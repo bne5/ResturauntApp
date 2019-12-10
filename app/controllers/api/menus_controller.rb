@@ -25,7 +25,7 @@ class Api::MenusController < ApplicationController
 
   def destroy
     @menu.destroy
-    render json: { message: "Item deleted" }
+    render json: { message: "Menu deleted" }
 
 
   private
