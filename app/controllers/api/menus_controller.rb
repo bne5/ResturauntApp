@@ -1,12 +1,7 @@
 class Api::MenusController < ApplicationController
-  before_action :set_menu, only: [:show, :update, :destroy]
-
+  
   def index
     render json: Menu.all
-  end
-
-  def show 
-    render json: @menu
   end
 
   def create
@@ -14,25 +9,22 @@ class Api::MenusController < ApplicationController
     if menu.save
       render json: menu
     else
-      render json: { errors: menu.errors }
+      render json: { errors: menu.errors }, status: :unprocessable_entity
     end
   end
 
   def update
-    @menu.update(complete: !@menu.complete)
-    render json: @menu
+    menu = Menu.find(params[:id])
+    menu.update(complete: !menu.complete)
+    render json: menu
   end
 
   def destroy
-    @menu.destroy
+    Menu.find(params[:id]).destroy
     render json: { message: "Menu deleted" }
-
+  end
 
   private
-    def set_menu
-      @menu = Menu.find(params[:id])
-    end
-
     def menu_params
       params.require(:menu).permit(:course, :service)
     end

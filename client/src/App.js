@@ -11,10 +11,10 @@ class App extends Component {
     axios.get("/api/menus")
       .then( res => {
         this.setState({ menus: res.data, });
-      } )
+      })
       .catch( err => {
         console.log(err);
-      } )
+      })
   }
 
   addMenu = ( course ) => {

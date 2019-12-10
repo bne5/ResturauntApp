@@ -3,8 +3,7 @@ import Menu from './Menu';
 
 const MenuList = ({ menus, updateMenu, deleteMenu, }) => (
   <div>
-    {
-      menus.map( menu =>
+    { menus.map( menu =>
         <Menu
           key={menu.id}
           {...menu}
